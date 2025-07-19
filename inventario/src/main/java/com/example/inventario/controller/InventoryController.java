@@ -2,6 +2,8 @@ package com.example.inventario.controller;
 
 import com.example.inventario.dto.InventoryResponse;
 import com.example.inventario.dto.RegisterProductsRequest;
+import com.example.inventario.dto.RegisterWarehouseRequest;
+import com.example.inventario.dto.WarehouseResponse;
 import com.example.inventario.service.InventoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -41,5 +43,21 @@ public class InventoryController {
         inventoryService.registerProducts(request);
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping(value = "/inventory/warehouse", headers = "X-API-VERSION=1")
+    @Operation(summary = "Register warehouse")
+    public ResponseEntity<Void> registerWarehouse(@RequestBody RegisterWarehouseRequest request) {
+        inventoryService.registerWarehouse(request);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping(value = "/inventory/warehouse", headers = "X-API-VERSION=1")
+    @Operation(summary = "Get all warehouses")
+    public ResponseEntity<List<WarehouseResponse>> getAllWarehouses() {
+        List<WarehouseResponse> responses = inventoryService.getAllWarehouses();
+
+        return ResponseEntity.ok(responses);
+    }
+
 }
 

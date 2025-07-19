@@ -6,7 +6,8 @@ import java.util.List;
 
 @Data
 public class RegisterProductsRequest {
-    private Long warehouseId;
+    private String warehouseName; // Nuevo campo
     private List<ProductRequest> products;
 }
+
 
